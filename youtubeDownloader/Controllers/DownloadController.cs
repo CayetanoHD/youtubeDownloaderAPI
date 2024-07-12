@@ -12,7 +12,7 @@ using YoutubeExplode.Common;
 namespace youtubeDownloader.Controllers
 {
     [ApiController]
-    [Route("api/youtube/[controller]")]
+    [Route("api/youtubedonloader/[controller]")]
 
     public class DownloadController : ControllerBase
     {
@@ -36,7 +36,6 @@ namespace youtubeDownloader.Controllers
             {
                 return BadRequest("URL de YouTube no proporcionada.");
             }
-
             try
             {
                 IncrementRequestCount();
