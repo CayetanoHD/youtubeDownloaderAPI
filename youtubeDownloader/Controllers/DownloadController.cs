@@ -12,7 +12,7 @@ using YoutubeExplode.Common;
 namespace youtubeDownloader.Controllers
 {
     [ApiController]
-    [Route("api/youtubedonloader/[controller]")]
+    [Route("api/youtube/[controller]")]
 
     public class DownloadController : ControllerBase
     {
