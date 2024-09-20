@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.IO;
-using System.Threading.Tasks;
 using YoutubeExplode;
-using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.Streams;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using YoutubeExplode.Common;
 
 namespace youtubeDownloader.Controllers
@@ -18,7 +12,6 @@ namespace youtubeDownloader.Controllers
     {
         private readonly YoutubeClient _youtubeClient;
 
-        private static int _requestCount = 0;
 
         private readonly ILogger<DownloadController> _logger;
 
@@ -38,7 +31,7 @@ namespace youtubeDownloader.Controllers
             }
             try
             {
-                IncrementRequestCount();
+
                 var video = await _youtubeClient.Videos.GetAsync(videoUrl);
                 var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(video.Id);
                 IStreamInfo streamInfo;
@@ -64,7 +57,6 @@ namespace youtubeDownloader.Controllers
                         video.Duration,
                         downloadUrl,
                         ThumbnailUrl = imgUrl.Url,
-                        _requestCount,
                         format
                     });
                 }
@@ -85,11 +77,7 @@ namespace youtubeDownloader.Controllers
             }
         }
 
-        private void IncrementRequestCount()
-        {
-            _requestCount++;
-            _logger.LogInformation($"Número total de solicitudes hasta ahora: {_requestCount}");
-        }
+         
 
 
     }
